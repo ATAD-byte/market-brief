@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+  <channel>
+    <title>Tony&#x27;s Daily Market Brief</title>
+    <link>https://ATAD-byte.github.io/market-brief/</link>
+    <language>en-au</language>
+    <description>A daily two-host market brief covering Australian, US and global economic and financial news, auto-generated each morning from Tony&#x27;s newsletter inbox.</description>
+    <lastBuildDate>Mon, 17 Aug 2026 04:31:00 +0000</lastBuildDate>
+    <itunes:author>Market Desk</itunes:author>
+    <itunes:summary>A daily two-host market brief covering Australian, US and global economic and financial news, auto-generated each morning from Tony&#x27;s newsletter inbox.</itunes:summary>
+    <itunes:type>episodic</itunes:type>
+    <itunes:explicit>false</itunes:explicit>
+    <itunes:owner><itunes:name>Market Desk</itunes:name><itunes:email>a.tadros05@gmail.com</itunes:email></itunes:owner>
+    <itunes:image href="https://ATAD-byte.github.io/market-brief/cover.png"/>
+    <itunes:category text="Business"><itunes:category text="Investing"/></itunes:category>
+    <image><url>https://ATAD-byte.github.io/market-brief/cover.png</url><title>Tony&#x27;s Daily Market Brief</title><link>https://ATAD-byte.github.io/market-brief/</link></image>
+    <item>
+      <title>Mon 17 Aug — Unnatural calm: records vs a bond bear market</title>
+      <description>Wall St eases from records with the VIX at 14.25 while long bonds sell off; Fed and RBA lean hawkish; ASX opens soft into a heavy earnings week (JB Hi-Fi -12%, NAB); oil firms on Iran.</description>
+      <pubDate>Mon, 17 Aug 2026 07:15:00 +1000</pubDate>
+      <enclosure url="https://ATAD-byte.github.io/market-brief/episodes/2026-08-17.mp3" length="2004909" type="audio/mpeg"/>
+      <guid isPermaLink="false">https://ATAD-byte.github.io/market-brief/episodes/2026-08-17.mp3</guid>
+      <itunes:duration>2:05</itunes:duration>
+      <itunes:explicit>false</itunes:explicit>
+    </item>
+  </channel>
+</rss>

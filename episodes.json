@@ -1,0 +1,18 @@
+{
+  "title": "Tony's Daily Market Brief",
+  "author": "Market Desk",
+  "email": "a.tadros05@gmail.com",
+  "description": "A daily two-host market brief covering Australian, US and global economic and financial news, auto-generated each morning from Tony's newsletter inbox.",
+  "base_url": "https://ATAD-byte.github.io/market-brief",
+  "episodes": [
+    {
+      "date": "2026-08-17",
+      "title": "Mon 17 Aug \u2014 Unnatural calm: records vs a bond bear market",
+      "summary": "Wall St eases from records with the VIX at 14.25 while long bonds sell off; Fed and RBA lean hawkish; ASX opens soft into a heavy earnings week (JB Hi-Fi -12%, NAB); oil firms on Iran.",
+      "file": "episodes/2026-08-17.mp3",
+      "duration": "2:05",
+      "bytes": 2004909,
+      "pubdate": "Mon, 17 Aug 2026 07:15:00 +1000"
+    }
+  ]
+}

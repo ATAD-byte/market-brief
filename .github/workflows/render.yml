@@ -1,0 +1,53 @@
+name: Render Daily Market Brief
+on:
+  schedule:
+    - cron: '20 21 * * *'   # 21:20 UTC = 07:20 Sydney (AEST). Use '20 20 * * *' during AEDT (Oct–Apr).
+  workflow_dispatch:          # lets you run it manually from the Actions tab
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: render
+  cancel-in-progress: false
+env:
+  SCRIPT_FILE_ID: 13X-wQD2S6S3WK5oLRe01LmVFGY7kpl6K
+  TODAY_FILE_ID: 1si-40iGy6F_Qbguk3bKAPuEYGbmoOL7J
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Enable GitHub Pages (idempotent)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -sS -X POST \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages" \
+            -d '{"source":{"branch":"main","path":"/"}}' || true
+      - name: Install tools
+        run: |
+          sudo apt-get update && sudo apt-get install -y ffmpeg
+          pip install pillow
+      - name: Fetch today's script + metadata from Google Drive
+        run: |
+          curl -sL "https://drive.google.com/uc?export=download&id=${SCRIPT_FILE_ID}" -o script.txt
+          curl -sL "https://drive.google.com/uc?export=download&id=${TODAY_FILE_ID}" -o today.json
+          echo "--- today.json ---"; cat today.json; echo
+          python -c "import json;json.load(open('today.json'))" || { echo '::error::today.json invalid — is the Drive folder shared as Anyone-with-link?'; exit 1; }
+          grep -q ':' script.txt || { echo '::error::script.txt looks wrong — check Drive sharing'; exit 1; }
+      - name: Render with Google Cloud TTS
+        env:
+          GCP_TTS_API_KEY: ${{ secrets.GCP_TTS_API_KEY }}
+        run: python scripts/render_all.py
+      - name: Commit audio + feed
+        run: |
+          git config user.name "market-brief-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Episode $(python -c 'import json;print(json.load(open("today.json"))["date"])')" || echo "no changes"
+          git push
